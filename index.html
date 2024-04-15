@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Média</title>
+    <!-- Incluindo Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1>Calculadora de Média</h1>
+    <div class="form-group">
+        <label for="numeros">Insira os números (separados por vírgula):</label>
+        <input type="text" class="form-control" id="numeros" placeholder="Ex: 10, 20, 30, 40, 50">
+    </div>
+    <button type="button" class="btn btn-primary" onclick="calcularMedia()">Calcular Média</button>
+    <div id="resultado" class="mt-3"></div>
+</div>
+
+<!-- Incluindo Bootstrap JS e a função JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function calcularMedia() {
+        const numerosInput = document.getElementById('numeros').value;
+        const numerosArray = numerosInput.split(',').map(num => parseInt(num.trim(), 10));
+
+        if (numerosArray.some(isNaN)) {
+            document.getElementById('resultado').innerHTML = '<div class="alert alert-danger" role="alert">Por favor, insira apenas números válidos.</div>';
+            return;
+        }
+
+        const media = numerosArray.length > 0 ? numerosArray.reduce((acc, num) => acc + num, 0) / numerosArray.length : 0;
+
+        document.getElementById('resultado').innerHTML = `<div class="alert alert-success" role="alert">A média é: ${media}</div>`;
+    }
+</script>
+</body>
+</html>
